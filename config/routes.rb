@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   patch '/change-password/:id' => 'users#changepw'
   resources :users, only: [:index, :show]
 
-  post '/shows', to: 'shows#create'
-  patch '/shows/:id', to: 'shows#update'
-  delete '/shows/:id', to: 'shows#destroy'
+
+  resources :shows, only: [:index, :show, :create, :update, :destroy]
+  # post '/shows', to: 'shows#create'
+  # patch '/shows/:id', to: 'shows#update'
+  # delete '/shows/:id', to: 'shows#destroy'
 end
