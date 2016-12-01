@@ -48,6 +48,10 @@ class ApplicationController < ActionController::API
     render json: { error: { message: 'Not Found' } }, status: :not_found
   end
 
+  def clean_params
+    @clean_params ||= HashWithIndifferentAccess.new.merge blank_to_nil( params )
+  end
+
   # Restrict visibility of these methods
   private :authenticate, :current_user, :set_current_user, :record_not_found
   private :ssl_configured?, :api_request_settings

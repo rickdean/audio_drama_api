@@ -1,10 +1,11 @@
+#
 class ShowsController < ProtectedController
   before_action :set_show, only: [:show, :update, :destroy]
 
   # GET /shows
   # GET /shows.json
   def index
-    @shows = Show.where("user_id=#{current_user.id}").reverse
+    @shows = Show.where(:user_id=> current_user.id)
 
     render json: @shows
   end
