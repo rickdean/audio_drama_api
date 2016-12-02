@@ -6,7 +6,6 @@ class ShowsController < ProtectedController
   # GET /shows.json
   def index
     @shows = Show.where(:user_id=> current_user.id)
-
     render json: @shows
   end
 
@@ -20,6 +19,7 @@ class ShowsController < ProtectedController
   # POST /shows.json
   def create
     @show = current_user.shows.build(show_params)
+    # @show.user_id = current_user.id
     if @show.save
       render json: @show, status: :created, location: @show
     else
@@ -36,6 +36,10 @@ class ShowsController < ProtectedController
       head :no_content
     else
       render json: @show.errors, status: :unprocessable_entity
+      # @title = params[:title]
+      # unless !params[:title].present?
+      #    Show.create :title => @title
+      #  end
     end
   end
 
