@@ -36,10 +36,6 @@ class ShowsController < ProtectedController
       head :no_content
     else
       render json: @show.errors, status: :unprocessable_entity
-      # @title = params[:title]
-      # unless !params[:title].present?
-      #    Show.create :title => @title
-      #  end
     end
   end
 
@@ -49,7 +45,7 @@ class ShowsController < ProtectedController
     if @show.destroy
       head :no_content
     else
-      render json:  @show.errors, status: :unprocessable_entity
+      render json: @show.errors, status: :unprocessable_entity
     end
   end
 
